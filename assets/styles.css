@@ -1,0 +1,386 @@
+/* BATJIN NEGDEKH URS — digital business card
+   Shared stylesheet for every employee card. Colors/spacing mirror the
+   printed brand book's design tokens (02_DESIGN_SYSTEM/tokens.css). */
+
+@font-face {
+  font-family: "Rubik";
+  src: url("fonts/Rubik-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Rubik";
+  src: url("fonts/Rubik-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Noto Sans";
+  src: url("fonts/NotoSans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Noto Sans";
+  src: url("fonts/NotoSans-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  --bnu-navy: #0a1832;
+  --bnu-ink: #043a60;
+  --bnu-blue: #0062aa;
+  --bnu-blue-2: #0e4775;
+  --bnu-silver: #94a3ae;
+  --bnu-mist: #f2f5f7;
+  --bnu-paper: #fafbfc;
+  --bnu-text: #132033;
+  --bnu-muted: #5f6c76;
+  --bnu-white: #ffffff;
+  --font-display: "Rubik", Arial, sans-serif;
+  --font-body: "Noto Sans", Arial, sans-serif;
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --touch: 44px;
+  --max-width: 480px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bnu-paper);
+  color: var(--bnu-text);
+  font-family: var(--font-body);
+  line-height: 1.45;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--bnu-navy);
+  color: var(--bnu-white);
+  padding: var(--space-2) var(--space-3);
+  z-index: 100;
+}
+.skip-link:focus {
+  left: var(--space-2);
+  top: var(--space-2);
+}
+
+.card {
+  position: relative;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: var(--space-4) var(--space-3) var(--space-5);
+  background: var(--bnu-white);
+  overflow: hidden;
+  animation: card-in 0.35s ease-out;
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    animation: none;
+  }
+}
+
+.lang-toggle {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+  margin-bottom: var(--space-3);
+}
+.lang-toggle__btn {
+  min-width: 40px;
+  min-height: 28px;
+  padding: 4px 10px;
+  background: transparent;
+  border: 1px solid var(--bnu-mist);
+  border-radius: 6px;
+  color: var(--bnu-muted);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+.lang-toggle__btn[aria-pressed="true"] {
+  background: var(--bnu-navy);
+  border-color: var(--bnu-navy);
+  color: var(--bnu-white);
+}
+.lang-toggle__btn:focus-visible {
+  outline: 3px solid var(--bnu-blue);
+  outline-offset: 2px;
+}
+
+.identity {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-bottom: var(--space-4);
+}
+
+.identity__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-4);
+}
+.identity__logo img {
+  height: 96px;
+  width: auto;
+  max-width: 100%;
+}
+.identity__logo--photo img {
+  height: 72px;
+  width: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.identity h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.2;
+  margin: 0 0 6px;
+  color: var(--bnu-text);
+}
+
+.identity__position {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.03em;
+  color: var(--bnu-blue);
+  margin: 0 0 2px;
+}
+
+.btn-save {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  width: 100%;
+  min-height: 56px;
+  background: var(--bnu-navy);
+  color: var(--bnu-white);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: var(--space-4);
+  cursor: pointer;
+  transition: transform 0.12s ease, background 0.12s ease;
+}
+.btn-save:hover {
+  background: var(--bnu-ink);
+}
+.btn-save:active {
+  transform: scale(0.98);
+}
+.btn-save:focus-visible {
+  outline: 3px solid var(--bnu-blue);
+  outline-offset: 2px;
+}
+.btn-save svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.quick-actions {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.quick-actions__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: var(--touch);
+  padding: var(--space-2) var(--space-1);
+  background: var(--bnu-white);
+  border: 1px solid var(--bnu-mist);
+  border-radius: 12px;
+  color: var(--bnu-navy);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: border-color 0.12s ease, background 0.12s ease;
+}
+.quick-actions__item:hover {
+  border-color: var(--bnu-blue);
+  background: var(--bnu-mist);
+}
+.quick-actions__item:focus-visible {
+  outline: 3px solid var(--bnu-blue);
+  outline-offset: 2px;
+}
+.quick-actions__item svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--bnu-blue);
+}
+.quick-actions__item[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.contact-details {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--bnu-mist);
+  padding-top: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.contact-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+}
+
+.contact-row + .contact-row {
+  border-top: 1px solid var(--bnu-mist);
+}
+
+.contact-field {
+  min-width: 0;
+}
+
+.contact-field__label {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bnu-blue);
+  margin-bottom: 4px;
+}
+
+.contact-field__value,
+.contact-field__value:visited {
+  display: block;
+  font-size: 14.5px;
+  color: var(--bnu-text);
+  text-decoration: none;
+  word-break: break-word;
+}
+a.contact-field__value:hover {
+  color: var(--bnu-blue);
+}
+
+.card-footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+.card-footer p {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--bnu-muted);
+  margin: 0;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: var(--space-4);
+  transform: translate(-50%, 12px);
+  background: var(--bnu-navy);
+  color: var(--bnu-white);
+  padding: var(--space-2) var(--space-3);
+  border-radius: 8px;
+  font-size: 13px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 50;
+  max-width: calc(100% - 48px);
+  text-align: center;
+}
+.toast--visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+  pointer-events: auto;
+}
+
+@media (min-width: 520px) {
+  .card {
+    min-height: auto;
+    margin-top: var(--space-5);
+    margin-bottom: var(--space-5);
+    border-radius: 16px;
+    box-shadow: 0 24px 60px rgba(10, 24, 50, 0.12);
+  }
+}
+
+@media (max-width: 340px) {
+  .quick-actions {
+    gap: var(--space-1);
+  }
+  .identity h1 {
+    font-size: 24px;
+  }
+}
+
+/* Small-screen adjustments; retain the original typography and brand colors. */
+.identity__logo img { object-fit: contain; }
+.lang-toggle__btn { min-width: 44px; min-height: 44px; }
+a.contact-field__value { min-height: 44px; }
+.quick-actions { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.quick-actions__item { min-width: 0; }
+@media (max-width: 430px) {
+  .quick-actions { gap: 8px; }
+  .quick-actions__item { padding: 16px 2px; font-size: 11px; letter-spacing: 0; }
+}
+@media (max-width: 360px) {
+  .quick-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .contact-row { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .btn-save { font-size: 14px; padding: 12px 8px; }
+}
